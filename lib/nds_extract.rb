@@ -21,8 +21,9 @@ def flatten_a_o_a(aoa)
 end
 
 def movie_with_director_name(director_name, movie_data)
-  { 
+  {
     :title => movie_data[:title],
+    # :title => movie_data[:title],
     :worldwide_gross => movie_data[:worldwide_gross],
     :release_year => movie_data[:release_year],
     :studio => movie_data[:studio],
@@ -30,10 +31,31 @@ def movie_with_director_name(director_name, movie_data)
   }
 end
 
-
 # Your code after this point
 
 def movies_with_director_key(name, movies_collection)
+#   r =   {
+#       :worldwide_gross => 2,
+#       :release_year => 2014,
+#       :studio => "Karbit Poodles",
+#       :title => "The Fire Hydrant of Doom"
+#     }
+#   nameDir = "matthew"
+#
+#
+# result =  movie_with_director_name(nameDir, r)
+
+    result = []
+
+    movies_collection.each do |i|
+
+      result << movie_with_director_name(name, i)
+
+    end
+
+    result
+
+
   # GOAL: For each Hash in an Array (movies_collection), provide a collection
   # of movies and a directors name to the movie_with_director_name method
   # and accumulate the returned Array of movies into a new Array that's
@@ -41,7 +63,11 @@ def movies_with_director_key(name, movies_collection)
   #
   # INPUT:
   # * name: A director's name
-  # * movies_collection: An Array of Hashes where each Hash represents a movie
+  # * movies_collection: An Array of Hashes where each Hash represents a movie {}
+
+
+
+
   #
   # RETURN:
   #
@@ -58,7 +84,33 @@ def gross_per_studio(collection)
   #
   # INPUT:
   # * collection: Array of Hashes where each Hash where each Hash represents a movie
-  #
+  #ñ
+
+  # test_data = [
+  #   { :title => "Movie A", :studio => "Alpha Films", :worldwide_gross => 10 },
+  #   { :title => "Movie B", :studio => "Alpha Films", :worldwide_gross => 30 },
+  #   { :title => "Movie C", :studio => "Omega Films", :worldwide_gross => 30 }
+  # ]
+
+
+  pp collection
+  result = {}
+
+  for i in 0...collection.length do
+    studio_name = collection[i][:studio]
+    gross_amount = collection[i][:worldwide_gross]
+
+     if result[studio_name] == nil
+        result[studio_name] = gross_amount
+     elsif result[studio_name] != nil
+       result[studio_name] += gross_amount
+     end
+  end
+  result
+
+
+
+  # pp result
   # RETURN:
   #
   # Hash whose keys are the studio names and whose values are the sum
@@ -66,6 +118,25 @@ def gross_per_studio(collection)
 end
 
 def movies_with_directors_set(source)
+
+
+
+  # let (:test_data) {
+  #   [
+  #     { :name => "Byron Poodle", :movies => [
+  #       { :title => "At the park" },
+  #       { :title => "On the couch" },
+  #     ]
+  #     },
+  #     { :name => "Nancy Drew", :movies => [
+  #       { :title => "Biting" },
+  #     ]
+  #     }
+  #   ]
+  # }
+
+  
+
   # GOAL: For each director, find their :movies Array and stick it in a new Array
   #
   # INPUT:
