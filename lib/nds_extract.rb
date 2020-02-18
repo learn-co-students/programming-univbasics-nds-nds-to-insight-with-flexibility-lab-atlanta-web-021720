@@ -1,5 +1,7 @@
 # Provided, don't edit
 require 'directors_database'
+require 'pp'
+require 'pry'
 
 # A method we're giving you. This "flattens"  Arrays of Arrays so: [[1,2],
 # [3,4,5], [6]] => [1,2,3,4,5,6].
@@ -93,7 +95,7 @@ def gross_per_studio(collection)
   # ]
 
 
-  pp collection
+  #pp collection
   result = {}
 
   for i in 0...collection.length do
@@ -134,6 +136,24 @@ def movies_with_directors_set(source)
   #     }
   #   ]
   # }
+    #pp source
+
+    #return array of hashes 
+    # [[{:title => "Test", :director_name => "A"}]
+    i = 0
+    a_o_a_movies_by_dir = []
+  
+    while i < source.length do
+      dir_info_hash = source[i]
+      director_name = dir_info_hash[:name]
+      directors_movies = dir_info_hash[:movies]
+      a_o_a_movies_by_dir << movies_with_director_key(director_name, directors_movies)
+      i += 1
+    end
+  
+    a_o_a_movies_by_dir
+  end
+
 
   
 
